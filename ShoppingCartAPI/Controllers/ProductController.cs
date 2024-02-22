@@ -14,5 +14,12 @@ public class ProductController : ControllerBase
         _context = context;
     }
 
-    // Add methods here
+
+    //Add a Get endpoint that returns all products.
+   [HttpGet]
+    public async Task<ActionResult> GetAllProducts()
+    {
+        var products = await _context.Products.ToListAsync();
+        return Ok(products);
+    }
 }
