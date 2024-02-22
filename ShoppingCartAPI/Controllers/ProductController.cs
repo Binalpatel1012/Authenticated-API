@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Authenticated_API.Data;
 
 [Route("api/[controller]")]
 [ApiController]
@@ -31,5 +32,14 @@ public class ProductController : ControllerBase
                                      .Where(p => p.Category.Id == categoryId)
                                      .ToListAsync();
         return Ok(products);
+    }
+
+    //Add a Post endpoint that takes a single product and adds it to the database.
+    [HttpPost]
+    public async Task<ActionResult> AddProduct([FromBody] Product product)
+    {
+        _context.Products.Add(product);
+        await _context.SaveChangesAsync();
+        return Ok(product);
     }
 }
