@@ -1,6 +1,11 @@
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using ShoppingCartLibrary.Model;
+using ShoppingCartAPI.Data;
+
+
+
 
 [Route("api/[controller]")]
 [ApiController]

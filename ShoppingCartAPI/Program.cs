@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using ShoppingCartAPI.Data; 
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -31,9 +32,7 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-app.UseAuthentication(); // Make sure to call this before UseAuthorization
+app.UseAuthentication(); 
 app.UseAuthorization();
-
-
 
 app.Run();
