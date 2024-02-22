@@ -41,18 +41,24 @@ public class ShoppingCartController : ControllerBase
     {
         var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
         var cart = await _context.ShoppingCarts
-                                 .Include(c => c.Products)
-                                 .SingleOrDefaultAsync(c => c.User == userId) ?? new ShoppingCart { User = userId };
+                                .Include(c => c.Products)
+                                .SingleOrDefaultAsync(c => c.User == userId);
+
+        // Ensure that cart is not null before accessing its members
+        if (cart == null)
+        {
+            cart = new ShoppingCart { User = userId };
+            _context.ShoppingCarts.Add(cart);
+        }
 
         var product = await _context.Products.FindAsync(productId);
         if (product == null) return NotFound("Product not found.");
 
-        if (cart.Id == 0) _context.ShoppingCarts.Add(cart);
         cart.Products.Add(product);
-
         await _context.SaveChangesAsync();
         return Ok();
     }
+
 
     [HttpPost("remove/{productId}")]
     public async Task<ActionResult> RemoveFromCart(int productId)

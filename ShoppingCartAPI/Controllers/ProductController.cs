@@ -33,8 +33,8 @@ public class ProductController : ControllerBase
     public async Task<ActionResult> GetProductsByCategory(int categoryId)
     {
         var products = await _context.Products
-                                     .Where(p => p.Category.Id == categoryId)
-                                     .ToListAsync();
+                                    .Where(p => p.Category != null && p.Category.Id == categoryId)
+                                    .ToListAsync();
         return Ok(products);
     }
 
