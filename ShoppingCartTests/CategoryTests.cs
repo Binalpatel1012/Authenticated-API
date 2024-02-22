@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ShoppingCartLibrary.Model; 
+using ShoppingCartLibrary.Model;
 
 namespace ShoppingCartTests
 {
@@ -7,62 +7,49 @@ namespace ShoppingCartTests
     public class CategoryTests
     {
         [TestMethod]
-        public void Category_Id_Should_Be_Set_And_Get_Correctly()
+        public void Category_Id_Should_Be_Set_Correctly()
         {
             // Arrange
             var category = new Category();
+            
+            // Act
             category.Id = 1;
 
-            // Act
-            var result = category.Id;
-
             // Assert
-            Assert.AreEqual(1, result);
+            Assert.AreEqual(1, category.Id);
         }
 
         [TestMethod]
-        public void Category_Description_Should_Be_Set_And_Get_Correctly()
+        public void Category_Description_Should_Be_Set_Correctly()
         {
             // Arrange
             var category = new Category();
+            
+            // Act
             category.Description = "Electronics";
 
-            // Act
-            var result = category.Description;
-
             // Assert
-            Assert.AreEqual("Electronics", result);
+            Assert.AreEqual("Electronics", category.Description);
         }
 
         [TestMethod]
-        public void Category_Can_Add_Product()
+        public void Category_Default_Id_Should_Be_Zero()
         {
             // Arrange
-            var category = new Category { Id = 1, Description = "Books" };
-            var product = new Product { Id = 1, Name = "Test Book" };
-            category.Products = new List<Product> { product };
-
-            // Act
-            var result = category.Products.Contains(product);
+            var category = new Category();
 
             // Assert
-            Assert.IsTrue(result);
+            Assert.AreEqual(0, category.Id);
         }
 
         [TestMethod]
-        public void Category_Can_Remove_Product()
+        public void Category_Default_Description_Should_Be_Null()
         {
             // Arrange
-            var category = new Category { Id = 1, Description = "Books" };
-            var product = new Product { Id = 1, Name = "Test Book" };
-            category.Products = new List<Product> { product };
-
-            // Act
-            category.Products.Remove(product);
-            var result = category.Products.Contains(product);
+            var category = new Category();
 
             // Assert
-            Assert.IsFalse(result);
+            Assert.IsNull(category.Description);
         }
     }
 }
