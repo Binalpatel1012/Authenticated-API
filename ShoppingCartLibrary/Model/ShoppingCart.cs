@@ -1,6 +1,9 @@
-public class ShoppingCart
+namespace ShoppingCartLibrary.Model
 {
-    public int Id { get; set; }
-    public string User { get; set; }
-    public List<Product> Products { get; set; } = new List<Product>();
+    public class ShoppingCart
+    {
+        public int Id { get; set; }
+        public string User { get; set; }
+        public List<Product> Products { get; set; } = new List<Product>();
+    }
 }

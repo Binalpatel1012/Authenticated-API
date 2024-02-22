@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using ShoppingCartLibrary;
-using Authenticated_API.Models;
+using ShoppingCartLibrary.Model;
 
 public class AppDbContext : DbContext
 {
