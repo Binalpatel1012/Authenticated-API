@@ -22,4 +22,14 @@ public class ProductController : ControllerBase
         var products = await _context.Products.ToListAsync();
         return Ok(products);
     }
+
+    //Add a Get endpoint that takes a category Id and returns all products in that category.
+    [HttpGet("category/{categoryId}")]
+    public async Task<ActionResult> GetProductsByCategory(int categoryId)
+    {
+        var products = await _context.Products
+                                     .Where(p => p.Category.Id == categoryId)
+                                     .ToListAsync();
+        return Ok(products);
+    }
 }
